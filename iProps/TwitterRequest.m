@@ -9,6 +9,7 @@
 #import "TwitterRequest.h"
 #import <Social/Social.h>
 #import <Accounts/Accounts.h>
+#import "UserModel.h"
 
 @implementation TwitterRequest
 
@@ -51,8 +52,14 @@
         //NSString *name = parsedObject[@"users"][0][@"screen_name"];
         //NSString *fulllName = parsedObject[@"users"][0][@"name"];
         
-        UserModel *user = [MTLJSONAdapter modelOfClass:UserModel.class fromJSONDictionary:parsedObject[@"users"][0] error:&error];
-        onSuccess(@[user]);
+        NSMutableArray *users = [NSMutableArray array];
+        
+        for (int i = 0; i < [parsedObject[@"users"] count]; i++) {
+            UserModel *user = [MTLJSONAdapter modelOfClass:UserModel.class fromJSONDictionary:parsedObject[@"users"][i] error:&error];
+            [users addObject:user];
+        }
+        
+        onSuccess(@[users]);
     }];
 }
 
