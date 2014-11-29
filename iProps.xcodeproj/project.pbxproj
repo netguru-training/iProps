@@ -16,6 +16,8 @@
 		90089B4B1A29CCAE00148B04 /* iPropsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 90089B4A1A29CCAE00148B04 /* iPropsTests.m */; };
 		90089B551A29D2CA00148B04 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90089B541A29D2CA00148B04 /* Social.framework */; };
 		90089B571A29D2D400148B04 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90089B561A29D2D400148B04 /* Twitter.framework */; };
+		90089B591A29DD7E00148B04 /* PropsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90089B581A29DD7E00148B04 /* PropsViewController.storyboard */; };
+		90089B5C1A29DDB400148B04 /* RootTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90089B5B1A29DDB400148B04 /* RootTabViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,9 @@
 		90089B4A1A29CCAE00148B04 /* iPropsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iPropsTests.m; sourceTree = "<group>"; };
 		90089B541A29D2CA00148B04 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		90089B561A29D2D400148B04 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
+		90089B581A29DD7E00148B04 /* PropsViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PropsViewController.storyboard; sourceTree = "<group>"; };
+		90089B5A1A29DDB400148B04 /* RootTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootTabViewController.h; sourceTree = "<group>"; };
+		90089B5B1A29DDB400148B04 /* RootTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootTabViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +102,9 @@
 				90089B3B1A29CCAE00148B04 /* Images.xcassets */,
 				90089B3D1A29CCAE00148B04 /* LaunchScreen.xib */,
 				90089B2E1A29CCAE00148B04 /* Supporting Files */,
+				90089B581A29DD7E00148B04 /* PropsViewController.storyboard */,
+				90089B5A1A29DDB400148B04 /* RootTabViewController.h */,
+				90089B5B1A29DDB400148B04 /* RootTabViewController.m */,
 			);
 			path = iProps;
 			sourceTree = "<group>";
@@ -208,6 +216,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90089B591A29DD7E00148B04 /* PropsViewController.storyboard in Resources */,
 				90089B3A1A29CCAE00148B04 /* Main.storyboard in Resources */,
 				90089B3F1A29CCAE00148B04 /* LaunchScreen.xib in Resources */,
 				90089B3C1A29CCAE00148B04 /* Images.xcassets in Resources */,
@@ -228,6 +237,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90089B5C1A29DDB400148B04 /* RootTabViewController.m in Sources */,
 				90089B371A29CCAE00148B04 /* ViewController.m in Sources */,
 				90089B341A29CCAE00148B04 /* AppDelegate.m in Sources */,
 				90089B311A29CCAE00148B04 /* main.m in Sources */,
@@ -357,6 +367,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Michał Kazmierczak (93E57HZNE4)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michał Kazmierczak (93E57HZNE4)";
 				INFOPLIST_FILE = iProps/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "d74e53e9-31ee-44d6-a784-e09eebb7dcf8";
@@ -370,6 +381,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = iProps/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "d74e53e9-31ee-44d6-a784-e09eebb7dcf8";
