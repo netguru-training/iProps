@@ -26,11 +26,15 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    [TwitterRequest loadUsers];
+    [TwitterRequest loadUsersOnComplete:^(NSArray *users) {
+        NSLog(@"users: %@", users);
+    }];
 }
 
 - (void)refreshTable {
-    [TwitterRequest loadUsers];
+    [TwitterRequest loadUsersOnComplete:^(NSArray *users) {
+        NSLog(@"users: %@", users);
+    }];
     [self.refreshControl endRefreshing];
     [self.tableView reloadData];
 }

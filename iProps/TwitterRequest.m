@@ -40,13 +40,19 @@
       }];
 }
 
-+ (void)loadUsers {
++ (void)loadUsersOnComplete:(onSuccessBlock)onSuccess
+{
     NSURL *url = [[NSURL alloc] initWithString:@"https://api.twitter.com/1.1/friends/list.json"];
     NSDictionary *params = @{ @"screen_name": @"netguru" };
     
     [self.class getWithURL:url andParameters:params andRequest:^(NSData *data, NSHTTPURLResponse *responseUrl, NSError *error) {
         NSDictionary *parsedObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-        NSLog(@"%@", parsedObject);
+        
+        //NSString *name = parsedObject[@"users"][0][@"screen_name"];
+        //NSString *fulllName = parsedObject[@"users"][0][@"name"];
+        
+        UserModel *user = [MTLJSONAdapter modelOfClass:UserModel.class fromJSONDictionary:parsedObject[@"users"][0] error:&error];
+        onSuccess(@[user]);
     }];
 }
 

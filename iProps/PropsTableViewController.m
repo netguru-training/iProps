@@ -11,7 +11,7 @@
 #import "TweetModel.h"
 
 @interface PropsTableViewController ()
-
+@property (strong, nonatomic) NSArray *users;
 @end
 
 @implementation PropsTableViewController
