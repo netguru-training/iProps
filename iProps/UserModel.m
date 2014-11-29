@@ -13,9 +13,9 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{
-             @"twitterUsername": @"???",
-             @"fullName": @"???",
-             @"profileImageUrl":@"???",
+             @"twitterUsername": @"screen_name",
+             @"fullName": @"name",
+             @"profileImageUrl":@"profile_image_url",
              };
 }
 
