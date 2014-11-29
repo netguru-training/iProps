@@ -31,7 +31,8 @@
 
     [TwitterRequest getWithURL:url andParameters:params andRequest:^(NSData *data, NSHTTPURLResponse *responseUrl, NSError *error) {
         NSDictionary *parsedObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-        NSLog(@"%@", parsedObject);
+        self.data = parsedObject;
+        [self.tableView reloadData];
     }];
 }
 
@@ -58,15 +59,24 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 1;
+    if (self.data) {
+        return [self.data[@"statuses"] count];
+    } else {
+        return 1;
+    }
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"propsCell" forIndexPath:indexPath];
-  
-    cell.textLabel.text = @"Just kidding";
-  
+    
+    if (self.data) {
+        cell.textLabel.text = self.data[@"statuses"][indexPath.row][@"screen_name"];
+        cell.detailTextLabel.text = self.data[@"statuses"][indexPath.row][@"text"];
+    } else {
+        cell.textLabel.text = @"Loading";
+    }
+    
     return cell;
 }
 

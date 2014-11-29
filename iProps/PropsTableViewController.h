@@ -10,4 +10,6 @@
 
 @interface PropsTableViewController : UITableViewController
 
+@property (strong, nonatomic) NSDictionary *data;
+
 @end
