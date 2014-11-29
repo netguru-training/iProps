@@ -9,6 +9,7 @@
 #import "PropsTableViewController.h"
 #import "TwitterRequest.h"
 #import "TweetModel.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface PropsTableViewController ()
 @property (strong, nonatomic) NSArray *users;
@@ -76,6 +77,7 @@
         TweetModel *tweet = [self.data objectAtIndex:indexPath.row];
         cell.textLabel.text = tweet.user.twitterUsername;
         cell.detailTextLabel.text = tweet.text;
+        [cell.imageView sd_setImageWithURL:[NSURL URLWithString:tweet.user.profileImageUrl] placeholderImage:[UIImage imageNamed:@"Awesome.png"]];
     } else {
         cell.textLabel.text = @"Loading";
         cell.detailTextLabel.text = @"";
