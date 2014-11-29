@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <Mantle.h>
+#import "UserModel.h"
 
 @interface TweetModel : MTLModel <MTLJSONSerializing>
 
-@property (strong, nonatomic, readwrite) NSString *name;
-@property (strong, nonatomic, readwrite) NSString *text;
+@property (strong, nonatomic, readonly) NSString *text;
+@property (strong, nonatomic, readonly) UserModel *user;
 
 @end

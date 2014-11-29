@@ -12,10 +12,13 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{
-        @"name": @"display_name",
-        @"text": @"text"
+        @"text": @"text",
+        @"user": @"user"
     };
 }
 
++ (NSValueTransformer*)userJSONTransformer{
+    return [MTLValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[UserModel class]];
+}
 
 @end

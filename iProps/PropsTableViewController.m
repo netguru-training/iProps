@@ -30,7 +30,6 @@
     self.data = [[NSMutableArray alloc] init];
     [TwitterRequest loadTweetsWithHandler:^(NSData *data, NSHTTPURLResponse *responseUrl, NSError *error) {
         NSDictionary *parsedObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-        
         for (NSDictionary *user_data in parsedObject[@"statuses"]) {
             [self.data addObject:[MTLJSONAdapter modelOfClass:[TweetModel class] fromJSONDictionary:user_data error:nil]];
         }
@@ -75,7 +74,7 @@
     
     if ([self.data count] > 0) {
         TweetModel *tweet = [self.data objectAtIndex:indexPath.row];
-        cell.textLabel.text = tweet.name;
+        cell.textLabel.text = tweet.user.twitterUsername;
         cell.detailTextLabel.text = tweet.text;
     } else {
         cell.textLabel.text = @"Loading";
