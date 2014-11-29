@@ -26,10 +26,8 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    NSURL *url = [[NSURL alloc] initWithString:@"https://api.twitter.com/1.1/search/tweets.json"];
-    NSDictionary *params = @{ @"q": @"#netguru" };
 
-    [TwitterRequest getWithURL:url andParameters:params andRequest:^(NSData *data, NSHTTPURLResponse *responseUrl, NSError *error) {
+    [TwitterRequest loadTweetsWithHandler:^(NSData *data, NSHTTPURLResponse *responseUrl, NSError *error) {
         NSDictionary *parsedObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
         self.data = parsedObject;
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -77,6 +75,7 @@
         cell.detailTextLabel.text = self.data[@"statuses"][indexPath.row][@"text"];
     } else {
         cell.textLabel.text = @"Loading";
+        cell.detailTextLabel.text = @"";
     }
     
     return cell;

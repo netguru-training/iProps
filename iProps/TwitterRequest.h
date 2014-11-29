@@ -12,5 +12,6 @@
 
 + (void)getWithURL:(NSURL *)url andParameters:(NSDictionary *)parameters andRequest:(void (^)(NSData *, NSHTTPURLResponse *, NSError *))requestHandler;
 + (void)loadUsers;
++ (void)loadTweetsWithHandler:(void (^)(NSData *, NSHTTPURLResponse *, NSError *))requestHandler;
 
 @end

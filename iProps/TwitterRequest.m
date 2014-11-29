@@ -14,31 +14,33 @@
 
 + (void)getWithURL:(NSURL *)url andParameters:(NSDictionary *)parameters andRequest:(void (^)(NSData *, NSHTTPURLResponse *, NSError *))requestHandler
 {
-ACAccountStore *account = [[ACAccountStore alloc] init];
-ACAccountType *accountType = [account accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+    ACAccountStore *account = [[ACAccountStore alloc] init];
+    ACAccountType *accountType = [account accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
 
-[account requestAccessToAccountsWithType:accountType options:nil
-completion:^(BOOL granted, NSError *error){
-    if (granted == YES)
-    {
-        NSArray *arrayOfAccounts = [account accountsWithAccountType:accountType];
-    
-    if ([arrayOfAccounts count] > 0)
-    {
-        ACAccount *twitterAccount = [arrayOfAccounts lastObject];
-      
-        SLRequest *postRequest = [SLRequest
-                                  requestForServiceType:SLServiceTypeTwitter
-                                  requestMethod:SLRequestMethodGET
-                                  URL:url parameters:parameters];
-        postRequest.account = twitterAccount;
-      
-        [postRequest performRequestWithHandler:requestHandler];
-    } else {
-      NSLog(@"No access");
-    }
-  }
-}];
+    [account requestAccessToAccountsWithType:accountType options:nil
+    completion:^(BOOL granted, NSError *error){
+        if (granted == YES)
+        {
+            NSArray *arrayOfAccounts = [account accountsWithAccountType:accountType];
+        
+            if ([arrayOfAccounts count] > 0)
+            {
+                ACAccount *twitterAccount = [arrayOfAccounts lastObject];
+          
+                SLRequest *postRequest = [SLRequest
+                                          requestForServiceType:SLServiceTypeTwitter
+                                          requestMethod:SLRequestMethodGET
+                                          URL:url parameters:parameters];
+                postRequest.account = twitterAccount;
+          
+                [postRequest performRequestWithHandler:requestHandler];
+            }
+            
+        } else {
+          NSLog(@"No access");
+        }
+      }
+    }];
 }
 
 + (void)loadUsers {
@@ -49,6 +51,14 @@ completion:^(BOOL granted, NSError *error){
         NSDictionary *parsedObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
         NSLog(@"%@", parsedObject);
     }];
+}
+
++ (void)loadTweetsWithHandler:(void (^)(NSData *, NSHTTPURLResponse *, NSError *))requestHandler
+{
+    NSURL *url = [[NSURL alloc] initWithString:@"https://api.twitter.com/1.1/search/tweets.json"];
+    NSDictionary *params = @{ @"q": @"#netguru" };
+    
+    [self.class getWithURL:url andParameters:params andRequest:requestHandler];
 }
 
 @end
