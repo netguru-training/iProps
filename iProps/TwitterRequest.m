@@ -66,7 +66,7 @@
 + (void)loadTweetsWithHandler:(void (^)(NSData *, NSHTTPURLResponse *, NSError *))requestHandler
 {
     NSURL *url = [[NSURL alloc] initWithString:@"https://api.twitter.com/1.1/search/tweets.json"];
-    NSDictionary *params = @{ @"q": @"#netguru", @"count": @"200" };
+    NSDictionary *params = @{ @"q": @"netguru", @"count": @"200" };
     
     [self.class getWithURL:url andParameters:params andRequest:requestHandler];
 }
