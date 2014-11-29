@@ -8,6 +8,7 @@
 
 #import "PropsTableViewController.h"
 #import "TwitterRequest.h"
+#import "TweetModel.h"
 
 @interface PropsTableViewController ()
 
@@ -26,10 +27,14 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-
+    self.data = [[NSMutableArray alloc] init];
     [TwitterRequest loadTweetsWithHandler:^(NSData *data, NSHTTPURLResponse *responseUrl, NSError *error) {
         NSDictionary *parsedObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-        self.data = parsedObject;
+        
+        for (NSDictionary *user_data in parsedObject[@"statuses"]) {
+            [self.data addObject:[MTLJSONAdapter modelOfClass:[TweetModel class] fromJSONDictionary:user_data error:nil]];
+        }
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             [self refreshTable];
         });
@@ -60,7 +65,7 @@
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
     if (self.data) {
-        return [self.data[@"statuses"] count];
+        return [self.data count];
     } else {
         return 1;
     }
@@ -70,9 +75,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"propsCell" forIndexPath:indexPath];
     
-    if (self.data) {
-        cell.textLabel.text = self.data[@"statuses"][indexPath.row][@"screen_name"];
-        cell.detailTextLabel.text = self.data[@"statuses"][indexPath.row][@"text"];
+    if ([self.data count] > 0) {
+        TweetModel *tweet = [self.data objectAtIndex:indexPath.row];
+        cell.textLabel.text = tweet.name;
+        cell.detailTextLabel.text = tweet.text;
     } else {
         cell.textLabel.text = @"Loading";
         cell.detailTextLabel.text = @"";

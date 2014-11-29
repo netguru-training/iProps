@@ -24,6 +24,7 @@
 		CE1B97B21A29E905005EC2D0 /* PropsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1B97B11A29E905005EC2D0 /* PropsTableViewController.m */; };
 		CE1B97B41A29F5D4005EC2D0 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE1B97B31A29F5D4005EC2D0 /* Accounts.framework */; };
 		CE1B97B71A29FB17005EC2D0 /* TwitterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1B97B61A29FB17005EC2D0 /* TwitterRequest.m */; };
+		CE1B97BD1A2A0FC2005EC2D0 /* TweetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1B97BC1A2A0FC2005EC2D0 /* TweetModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,8 @@
 		CE1B97B31A29F5D4005EC2D0 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		CE1B97B51A29FB17005EC2D0 /* TwitterRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterRequest.h; sourceTree = "<group>"; };
 		CE1B97B61A29FB17005EC2D0 /* TwitterRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterRequest.m; sourceTree = "<group>"; };
+		CE1B97BB1A2A0FC2005EC2D0 /* TweetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetModel.h; sourceTree = "<group>"; };
+		CE1B97BC1A2A0FC2005EC2D0 /* TweetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +171,8 @@
 				CE1B97B61A29FB17005EC2D0 /* TwitterRequest.m */,
 				A48BF63B1A29F39300D972C3 /* UserModel.h */,
 				A48BF63C1A29F39300D972C3 /* UserModel.m */,
+				CE1B97BB1A2A0FC2005EC2D0 /* TweetModel.h */,
+				CE1B97BC1A2A0FC2005EC2D0 /* TweetModel.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -175,12 +180,12 @@
 		CE1B97B91A2A0DFD005EC2D0 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				CE1B97B01A29E905005EC2D0 /* PropsTableViewController.h */,
+				CE1B97B11A29E905005EC2D0 /* PropsTableViewController.m */,
 				90089B5A1A29DDB400148B04 /* RootTabViewController.h */,
 				90089B5B1A29DDB400148B04 /* RootTabViewController.m */,
-				CE1B97B01A29E905005EC2D0 /* PropsTableViewController.h */,
 				A48BF6401A29FECA00D972C3 /* UsersTableViewController.h */,
 				A48BF6411A29FECA00D972C3 /* UsersTableViewController.m */,
-				CE1B97B11A29E905005EC2D0 /* PropsTableViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -344,6 +349,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				90089B5C1A29DDB400148B04 /* RootTabViewController.m in Sources */,
+				CE1B97BD1A2A0FC2005EC2D0 /* TweetModel.m in Sources */,
 				CE1B97B71A29FB17005EC2D0 /* TwitterRequest.m in Sources */,
 				A48BF6421A29FECA00D972C3 /* UsersTableViewController.m in Sources */,
 				A48BF63D1A29F39300D972C3 /* UserModel.m in Sources */,
