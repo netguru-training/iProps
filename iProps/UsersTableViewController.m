@@ -7,6 +7,7 @@
 //
 
 #import "UsersTableViewController.h"
+#import "TwitterRequest.h"
 
 @interface UsersTableViewController ()
 
@@ -25,10 +26,11 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [TwitterRequest loadUsers];
 }
 
 - (void)refreshTable {
-    //TODO: refresh your data
+    [TwitterRequest loadUsers];
     [self.refreshControl endRefreshing];
     [self.tableView reloadData];
 }
