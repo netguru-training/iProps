@@ -44,7 +44,7 @@
 + (void)loadUsersOnComplete:(onSuccessBlock)onSuccess
 {
     NSURL *url = [[NSURL alloc] initWithString:@"https://api.twitter.com/1.1/friends/list.json"];
-    NSDictionary *params = @{ @"screen_name": @"netguru" };
+    NSDictionary *params = @{ @"screen_name": @"netguru", @"count": @"200" };
     
     [self.class getWithURL:url andParameters:params andRequest:^(NSData *data, NSHTTPURLResponse *responseUrl, NSError *error) {
         NSDictionary *parsedObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
@@ -66,7 +66,7 @@
 + (void)loadTweetsWithHandler:(void (^)(NSData *, NSHTTPURLResponse *, NSError *))requestHandler
 {
     NSURL *url = [[NSURL alloc] initWithString:@"https://api.twitter.com/1.1/search/tweets.json"];
-    NSDictionary *params = @{ @"q": @"#netguru" };
+    NSDictionary *params = @{ @"q": @"#netguru", @"count": @"200" };
     
     [self.class getWithURL:url andParameters:params andRequest:requestHandler];
 }
