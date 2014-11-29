@@ -26,7 +26,9 @@
                             <outlet property="delegate" destination="D7K-ZN-aCC" id="m6n-ls-Ort"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="gci-p6-oBp"/>
+                    <navigationItem key="navigationItem" id="gci-p6-oBp">
+                        <barButtonItem key="leftBarButtonItem" image="glyphicons-82-refresh" id="vNH-oc-kMy"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8tB-cV-3mq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -51,4 +53,7 @@
             <point key="canvasLocation" x="552" y="406"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="glyphicons-82-refresh" width="25" height="26"/>
+    </resources>
 </document>
