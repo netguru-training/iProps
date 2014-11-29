@@ -23,6 +23,8 @@
 		A48BF6421A29FECA00D972C3 /* UsersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48BF6411A29FECA00D972C3 /* UsersTableViewController.m */; };
 		A6A371ADDFC99FFFB7182EF8 /* libPods-iProps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 526D9AD6B50AD389BF42A3F7 /* libPods-iProps.a */; };
 		CE1B97B21A29E905005EC2D0 /* PropsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1B97B11A29E905005EC2D0 /* PropsTableViewController.m */; };
+		CE1B97B41A29F5D4005EC2D0 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE1B97B31A29F5D4005EC2D0 /* Accounts.framework */; };
+		CE1B97B71A29FB17005EC2D0 /* TwitterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1B97B61A29FB17005EC2D0 /* TwitterRequest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +66,9 @@
 		A48BF6411A29FECA00D972C3 /* UsersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsersTableViewController.m; sourceTree = "<group>"; };
 		CE1B97B01A29E905005EC2D0 /* PropsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropsTableViewController.h; sourceTree = "<group>"; };
 		CE1B97B11A29E905005EC2D0 /* PropsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PropsTableViewController.m; sourceTree = "<group>"; };
+		CE1B97B31A29F5D4005EC2D0 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		CE1B97B51A29FB17005EC2D0 /* TwitterRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterRequest.h; sourceTree = "<group>"; };
+		CE1B97B61A29FB17005EC2D0 /* TwitterRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterRequest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE1B97B41A29F5D4005EC2D0 /* Accounts.framework in Frameworks */,
 				90089B571A29D2D400148B04 /* Twitter.framework in Frameworks */,
 				90089B551A29D2CA00148B04 /* Social.framework in Frameworks */,
 				A6A371ADDFC99FFFB7182EF8 /* libPods-iProps.a in Frameworks */,
@@ -139,6 +145,8 @@
 				A48BF6401A29FECA00D972C3 /* UsersTableViewController.h */,
 				A48BF6411A29FECA00D972C3 /* UsersTableViewController.m */,
 				CE1B97B11A29E905005EC2D0 /* PropsTableViewController.m */,
+				CE1B97B51A29FB17005EC2D0 /* TwitterRequest.h */,
+				CE1B97B61A29FB17005EC2D0 /* TwitterRequest.m */,
 			);
 			path = iProps;
 			sourceTree = "<group>";
@@ -172,6 +180,7 @@
 		D19F02FBBF9CF794B3F44065 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE1B97B31A29F5D4005EC2D0 /* Accounts.framework */,
 				526D9AD6B50AD389BF42A3F7 /* libPods-iProps.a */,
 			);
 			name = Frameworks;
@@ -316,6 +325,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				90089B5C1A29DDB400148B04 /* RootTabViewController.m in Sources */,
+				CE1B97B71A29FB17005EC2D0 /* TwitterRequest.m in Sources */,
 				90089B371A29CCAE00148B04 /* ViewController.m in Sources */,
 				A48BF6421A29FECA00D972C3 /* UsersTableViewController.m in Sources */,
 				A48BF63D1A29F39300D972C3 /* UserModel.m in Sources */,

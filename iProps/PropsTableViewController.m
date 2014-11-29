@@ -7,6 +7,7 @@
 //
 
 #import "PropsTableViewController.h"
+#import "TwitterRequest.h"
 
 @interface PropsTableViewController ()
 
@@ -22,6 +23,13 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    NSURL *url = [[NSURL alloc] initWithString:@"https://api.twitter.com/1.1/search/tweets.json"];
+    NSDictionary *params = @{ @"q": @"#netguru" };
+
+    [TwitterRequest getWithURL:url andParameters:params andRequest:^(NSData *data, NSHTTPURLResponse *responseUrl, NSError *error) {
+        NSDictionary *parsedObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+        NSLog(@"%@", parsedObject);
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
