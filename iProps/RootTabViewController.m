@@ -21,7 +21,7 @@
 - (void)awakeFromNib {
     UINavigationController *nVC = [[UIStoryboard storyboardWithName:@"PropsViewController" bundle:nil] instantiateInitialViewController];
     nVC.title = @"Props";
-    UINavigationController *nnVC = [[UIStoryboard storyboardWithName:@"PropsViewController" bundle:nil] instantiateInitialViewController];
+    UINavigationController *nnVC = [[UIStoryboard storyboardWithName:@"UsersViewController" bundle:nil] instantiateInitialViewController];
     nnVC.title = @"Users";
     
     [self setViewControllers:@[nVC, nnVC]];
