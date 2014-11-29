@@ -29,22 +29,26 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.data = [[NSMutableArray alloc] init];
+    [self loadTweets];
+}
+
+- (void)loadTweets {
     [TwitterRequest loadTweetsWithHandler:^(NSData *data, NSHTTPURLResponse *responseUrl, NSError *error) {
         NSDictionary *parsedObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+        [self.data removeAllObjects];
         for (NSDictionary *user_data in parsedObject[@"statuses"]) {
             [self.data addObject:[MTLJSONAdapter modelOfClass:[TweetModel class] fromJSONDictionary:user_data error:nil]];
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self refreshTable];
+            [self.refreshControl endRefreshing];
+            [self.tableView reloadData];
         });
     }];
 }
 
 - (void)refreshTable {
-    //TODO: refresh your data
-    [self.refreshControl endRefreshing];
-    [self.tableView reloadData];
+    [self loadTweets];
 }
 
 - (void)didReceiveMemoryWarning {
