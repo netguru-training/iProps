@@ -21,8 +21,10 @@
 - (void)awakeFromNib {
     UINavigationController *nVC = [[UIStoryboard storyboardWithName:@"PropsViewController" bundle:nil] instantiateInitialViewController];
     nVC.title = @"Props";
+    UINavigationController *nnVC = [[UIStoryboard storyboardWithName:@"PropsViewController" bundle:nil] instantiateInitialViewController];
+    nnVC.title = @"Users";
     
-    [self setViewControllers:@[nVC]];
+    [self setViewControllers:@[nVC, nnVC]];
 }
 
 - (void)didReceiveMemoryWarning {
