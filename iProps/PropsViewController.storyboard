@@ -41,6 +41,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Propsy" id="X1t-zG-GwP"/>
+                    <connections>
+                        <outlet property="tableView" destination="Prv-d0-sYQ" id="LmB-OH-ggX"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mb5-7U-khl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
