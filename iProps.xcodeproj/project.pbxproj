@@ -18,6 +18,7 @@
 		90089B571A29D2D400148B04 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90089B561A29D2D400148B04 /* Twitter.framework */; };
 		90089B591A29DD7E00148B04 /* PropsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90089B581A29DD7E00148B04 /* PropsViewController.storyboard */; };
 		90089B5C1A29DDB400148B04 /* RootTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90089B5B1A29DDB400148B04 /* RootTabViewController.m */; };
+		A6A371ADDFC99FFFB7182EF8 /* libPods-iProps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 526D9AD6B50AD389BF42A3F7 /* libPods-iProps.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +32,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		526D9AD6B50AD389BF42A3F7 /* libPods-iProps.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iProps.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		81B478D9A7A8900BFA4ABA3B /* Pods-iProps.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iProps.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iProps/Pods-iProps.debug.xcconfig"; sourceTree = "<group>"; };
 		90089B2B1A29CCAE00148B04 /* iProps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iProps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90089B2F1A29CCAE00148B04 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		90089B301A29CCAE00148B04 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -49,6 +52,7 @@
 		90089B581A29DD7E00148B04 /* PropsViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PropsViewController.storyboard; sourceTree = "<group>"; };
 		90089B5A1A29DDB400148B04 /* RootTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootTabViewController.h; sourceTree = "<group>"; };
 		90089B5B1A29DDB400148B04 /* RootTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootTabViewController.m; sourceTree = "<group>"; };
+		9A195377468B20AF4E3D8DFC /* Pods-iProps.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iProps.release.xcconfig"; path = "Pods/Target Support Files/Pods-iProps/Pods-iProps.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,7 @@
 			files = (
 				90089B571A29D2D400148B04 /* Twitter.framework in Frameworks */,
 				90089B551A29D2CA00148B04 /* Social.framework in Frameworks */,
+				A6A371ADDFC99FFFB7182EF8 /* libPods-iProps.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,6 +76,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		19F85D28B5CC9766A75EFBB4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				81B478D9A7A8900BFA4ABA3B /* Pods-iProps.debug.xcconfig */,
+				9A195377468B20AF4E3D8DFC /* Pods-iProps.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		90089B221A29CCAE00148B04 = {
 			isa = PBXGroup;
 			children = (
@@ -79,6 +93,8 @@
 				90089B2D1A29CCAE00148B04 /* iProps */,
 				90089B471A29CCAE00148B04 /* iPropsTests */,
 				90089B2C1A29CCAE00148B04 /* Products */,
+				19F85D28B5CC9766A75EFBB4 /* Pods */,
+				D19F02FBBF9CF794B3F44065 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -135,6 +151,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		D19F02FBBF9CF794B3F44065 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				526D9AD6B50AD389BF42A3F7 /* libPods-iProps.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -142,9 +166,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 90089B4E1A29CCAE00148B04 /* Build configuration list for PBXNativeTarget "iProps" */;
 			buildPhases = (
+				B3C5ACAB82024A83804FE5F5 /* Check Pods Manifest.lock */,
 				90089B271A29CCAE00148B04 /* Sources */,
 				90089B281A29CCAE00148B04 /* Frameworks */,
 				90089B291A29CCAE00148B04 /* Resources */,
+				D7F0425ABFC89A4C2A81204A /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -231,6 +257,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B3C5ACAB82024A83804FE5F5 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D7F0425ABFC89A4C2A81204A /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iProps/Pods-iProps-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		90089B271A29CCAE00148B04 /* Sources */ = {
@@ -362,6 +421,7 @@
 		};
 		90089B4F1A29CCAE00148B04 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 81B478D9A7A8900BFA4ABA3B /* Pods-iProps.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Michał Kazmierczak (93E57HZNE4)";
@@ -376,6 +436,7 @@
 		};
 		90089B501A29CCAE00148B04 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A195377468B20AF4E3D8DFC /* Pods-iProps.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -441,6 +502,7 @@
 				90089B501A29CCAE00148B04 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		90089B511A29CCAE00148B04 /* Build configuration list for PBXNativeTarget "iPropsTests" */ = {
 			isa = XCConfigurationList;
@@ -449,6 +511,7 @@
 				90089B531A29CCAE00148B04 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
