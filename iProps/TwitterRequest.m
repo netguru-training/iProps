@@ -10,6 +10,7 @@
 #import <Social/Social.h>
 #import <Accounts/Accounts.h>
 #import "UserModel.h"
+#import "TweetModel.h"
 
 @implementation TwitterRequest
 
@@ -49,26 +50,31 @@
     [self.class getWithURL:url andParameters:params andRequest:^(NSData *data, NSHTTPURLResponse *responseUrl, NSError *error) {
         NSDictionary *parsedObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
         
-        //NSString *name = parsedObject[@"users"][0][@"screen_name"];
-        //NSString *fulllName = parsedObject[@"users"][0][@"name"];
-        
         NSMutableArray *users = [NSMutableArray array];
         
-        for (int i = 0; i < [parsedObject[@"users"] count]; i++) {
-            UserModel *user = [MTLJSONAdapter modelOfClass:UserModel.class fromJSONDictionary:parsedObject[@"users"][i] error:&error];
-            [users addObject:user];
+        for (NSDictionary *userData in parsedObject[@"users"]) {
+            [users addObject:[MTLJSONAdapter modelOfClass:UserModel.class fromJSONDictionary:userData error:&error]];
         }
         
-        onSuccess(@[users]);
+        onSuccess([users copy]);
     }];
 }
 
-+ (void)loadTweetsWithHandler:(void (^)(NSData *, NSHTTPURLResponse *, NSError *))requestHandler
++ (void)loadTweetsWithHandler:(void (^)(NSArray *))requestHandler
 {
     NSURL *url = [[NSURL alloc] initWithString:@"https://api.twitter.com/1.1/search/tweets.json"];
     NSDictionary *params = @{ @"q": @"netguru", @"count": @"200" };
     
-    [self.class getWithURL:url andParameters:params andRequest:requestHandler];
+    [self.class getWithURL:url andParameters:params andRequest:^(NSData *data, NSHTTPURLResponse *responseUrl, NSError *error) {
+        
+        NSDictionary *parsedObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+        NSMutableArray *tweets = [NSMutableArray array];
+        
+        for (NSDictionary *tweetData in parsedObject[@"statuses"]) {
+            [tweets addObject:[MTLJSONAdapter modelOfClass:[TweetModel class] fromJSONDictionary:tweetData error:nil]];
+        }
+        requestHandler([tweets copy]);
+    }];
 }
 
 @end

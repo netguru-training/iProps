@@ -10,7 +10,7 @@
 
 @interface PropsTableViewController : UITableViewController
 
-@property (strong, nonatomic) NSMutableArray *data;
+@property (strong, nonatomic) NSArray *data;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end

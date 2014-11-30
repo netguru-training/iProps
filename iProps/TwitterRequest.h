@@ -13,7 +13,7 @@ typedef void (^onSuccessBlock)(NSArray *users);
 
 @interface TwitterRequest : NSObject
 + (void)getWithURL:(NSURL *)url andParameters:(NSDictionary *)parameters andRequest:(void (^)(NSData *, NSHTTPURLResponse *, NSError *))requestHandler;
-+ (void)loadTweetsWithHandler:(void (^)(NSData *, NSHTTPURLResponse *, NSError *))requestHandler;
++ (void)loadTweetsWithHandler:(void (^)(NSArray *))requestHandler;
 + (void)loadUsersOnComplete:(onSuccessBlock)onSuccess;
 
 @end

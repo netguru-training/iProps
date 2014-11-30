@@ -11,10 +11,6 @@
 #import "TweetModel.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
-@interface PropsTableViewController ()
-@property (strong, nonatomic) NSArray *users;
-@end
-
 @implementation PropsTableViewController
 
 - (void)viewDidLoad {
@@ -28,17 +24,12 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    self.data = [[NSMutableArray alloc] init];
     [self loadTweets];
 }
 
 - (void)loadTweets {
-    [TwitterRequest loadTweetsWithHandler:^(NSData *data, NSHTTPURLResponse *responseUrl, NSError *error) {
-        NSDictionary *parsedObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-        [self.data removeAllObjects];
-        for (NSDictionary *user_data in parsedObject[@"statuses"]) {
-            [self.data addObject:[MTLJSONAdapter modelOfClass:[TweetModel class] fromJSONDictionary:user_data error:nil]];
-        }
+    [TwitterRequest loadTweetsWithHandler:^(NSArray *array) {
+        self.data = array;
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.refreshControl endRefreshing];
