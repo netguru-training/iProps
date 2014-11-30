@@ -73,15 +73,15 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"propsCell" forIndexPath:indexPath];
-    NSLog(@"IndexPath: %@", indexPath);
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userCell" forIndexPath:indexPath];
+
     if ([self.data count] > 0) {
         UserModel *user = self.data[indexPath.row];
-        NSLog(@"Object: %@", user);
-        cell.textLabel.text = user.twitterUsername;
+        cell.detailTextLabel.text = user.twitterUsername;
+        cell.textLabel.text = @"";
     } else {
-        cell.textLabel.text = @"Loading";
-        cell.detailTextLabel.text = @"";
+        cell.detailTextLabel.text = @"Loading...";
+        cell.textLabel.text = @"";
     }
     
     return cell;
