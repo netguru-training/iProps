@@ -41,7 +41,16 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="gci-p6-oBp">
+                        <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" image="glyphicons-82-refresh" id="vNH-oc-kMy"/>
+                        <button key="titleView" hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wsO-2w-FoA">
+                            <rect key="frame" x="180" y="7" width="240" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                            <state key="normal" title="+">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
                         <barButtonItem key="rightBarButtonItem" title="Select multiple" id="6YS-Pa-umv">
                             <connections>
                                 <action selector="switchEditMode:" destination="D7K-ZN-aCC" id="2xJ-yL-2uO"/>
@@ -49,6 +58,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="buttonGiveMultipleProps" destination="wsO-2w-FoA" id="Jbz-NO-aJp"/>
                         <outlet property="labelSelectMultiple" destination="6YS-Pa-umv" id="EZp-5x-1LC"/>
                         <outlet property="tableView" destination="dm0-ML-jXa" id="FP6-R3-EKJ"/>
                     </connections>

@@ -11,5 +11,6 @@
 @interface UsersTableViewController : UITableViewController
 - (IBAction)switchEditMode:(id)sender;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *labelSelectMultiple;
+@property (weak, nonatomic) IBOutlet UIButton *buttonGiveMultipleProps;
 
 @end

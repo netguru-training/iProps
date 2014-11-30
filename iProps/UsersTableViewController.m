@@ -184,9 +184,11 @@
     [self.tableView setEditing:![self.tableView isEditing]];
     if([self.tableView isEditing]) {
         [self.labelSelectMultiple setTitle:@"Cancel"];
+        [self.buttonGiveMultipleProps setHidden:NO];
     }
     else {
         [self.labelSelectMultiple setTitle:@"Select multiple"];
+        [self.buttonGiveMultipleProps setHidden:YES];
     }
     [self.tableView reloadData]; // force reload to reset selection style
 }
