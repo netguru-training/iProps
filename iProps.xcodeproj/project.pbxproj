@@ -18,6 +18,7 @@
 		90089B591A29DD7E00148B04 /* PropsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90089B581A29DD7E00148B04 /* PropsViewController.storyboard */; };
 		90089B5C1A29DDB400148B04 /* RootTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90089B5B1A29DDB400148B04 /* RootTabViewController.m */; };
 		A42C9E891A29E70D00F3F8B5 /* UsersViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A42C9E881A29E70D00F3F8B5 /* UsersViewController.storyboard */; };
+		A43E739B1A2B0EC60019A6DF /* PropsDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A43E739A1A2B0EC60019A6DF /* PropsDetailsViewController.m */; };
 		A48BF63D1A29F39300D972C3 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A48BF63C1A29F39300D972C3 /* UserModel.m */; };
 		A48BF6421A29FECA00D972C3 /* UsersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48BF6411A29FECA00D972C3 /* UsersTableViewController.m */; };
 		A6A371ADDFC99FFFB7182EF8 /* libPods-iProps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 526D9AD6B50AD389BF42A3F7 /* libPods-iProps.a */; };
@@ -59,6 +60,8 @@
 		90089B5B1A29DDB400148B04 /* RootTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootTabViewController.m; sourceTree = "<group>"; };
 		9A195377468B20AF4E3D8DFC /* Pods-iProps.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iProps.release.xcconfig"; path = "Pods/Target Support Files/Pods-iProps/Pods-iProps.release.xcconfig"; sourceTree = "<group>"; };
 		A42C9E881A29E70D00F3F8B5 /* UsersViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UsersViewController.storyboard; sourceTree = "<group>"; };
+		A43E73991A2B0EC60019A6DF /* PropsDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropsDetailsViewController.h; sourceTree = "<group>"; };
+		A43E739A1A2B0EC60019A6DF /* PropsDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PropsDetailsViewController.m; sourceTree = "<group>"; };
 		A48BF63B1A29F39300D972C3 /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
 		A48BF63C1A29F39300D972C3 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
 		A48BF6401A29FECA00D972C3 /* UsersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsersTableViewController.h; sourceTree = "<group>"; };
@@ -183,6 +186,8 @@
 		CE1B97B91A2A0DFD005EC2D0 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A43E73991A2B0EC60019A6DF /* PropsDetailsViewController.h */,
+				A43E739A1A2B0EC60019A6DF /* PropsDetailsViewController.m */,
 				CE1B97B01A29E905005EC2D0 /* PropsTableViewController.h */,
 				CE1B97B11A29E905005EC2D0 /* PropsTableViewController.m */,
 				90089B5A1A29DDB400148B04 /* RootTabViewController.h */,
@@ -360,6 +365,7 @@
 				90089B341A29CCAE00148B04 /* AppDelegate.m in Sources */,
 				90089B311A29CCAE00148B04 /* main.m in Sources */,
 				CE1B97B21A29E905005EC2D0 /* PropsTableViewController.m in Sources */,
+				A43E739B1A2B0EC60019A6DF /* PropsDetailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
