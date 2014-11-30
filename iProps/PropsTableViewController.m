@@ -11,6 +11,7 @@
 #import "TwitterRequest.h"
 #import "TweetModel.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <QuartzCore/QuartzCore.h>
 
 @interface PropsTableViewController ()
 
@@ -76,6 +77,11 @@
         TweetModel *tweet = [self.data objectAtIndex:indexPath.row];
         cell.textLabel.text = tweet.user.twitterUsername;
         cell.detailTextLabel.text = tweet.text;
+        cell.imageView.layer.backgroundColor=[[UIColor clearColor] CGColor];
+        cell.imageView.layer.cornerRadius=20;
+        cell.imageView.layer.borderWidth=1.5;
+        cell.imageView.layer.masksToBounds = YES;
+        cell.imageView.layer.borderColor=[[UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1.0] CGColor];
         [cell.imageView sd_setImageWithURL:tweet.user.profileImageUrl placeholderImage:[UIImage imageNamed:@"Awesome.png"]];
     } else {
         cell.textLabel.text = @"Loading";
