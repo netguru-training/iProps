@@ -7,6 +7,7 @@
 //
 
 #import "PropsDetailsViewController.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface PropsDetailsViewController ()
 
@@ -17,8 +18,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSLog(@"%@", self.props);
+    //NSLog(@"%@", self.props);
+    //self.propsTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    //self.propsTextLabel.numberOfLines = 0;
     
+    NSString *at = @"@";
+    
+    [self.usernameLabel setText:[at stringByAppendingString:_props.user.twitterUsername]];
+    [self.fullnameLabel setText:_props.user.fullName];
+    [self.propsTextLabel setText:_props.text];
+    [self.avatarImage sd_setImageWithURL:_props.user.profileImageUrl placeholderImage:[UIImage imageNamed:@"Awesome.png"]];
 }
 
 - (void)didReceiveMemoryWarning {
