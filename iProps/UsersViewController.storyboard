@@ -42,7 +42,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="gci-p6-oBp">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" image="glyphicons-82-refresh" id="vNH-oc-kMy"/>
                         <button key="titleView" hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wsO-2w-FoA">
                             <rect key="frame" x="180" y="7" width="240" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -89,7 +88,4 @@
             <point key="canvasLocation" x="552" y="406"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="glyphicons-82-refresh" width="25" height="26"/>
-    </resources>
 </document>
