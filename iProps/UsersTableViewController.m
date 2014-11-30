@@ -22,6 +22,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.tableView.allowsMultipleSelectionDuringEditing = YES;
+    
     self.refreshControl = [[UIRefreshControl alloc]init];
     [self.tableView addSubview:self.refreshControl];
     [self.refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
@@ -87,23 +89,35 @@
         cell.detailTextLabel.text = @"";
     }
     
+    if (self.tableView.isEditing) {
+        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+    } else {
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UserModel *user = self.data[indexPath.row];
     
-    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
-    {
-        SLComposeViewController *composeController = [SLComposeViewController
-                                                      composeViewControllerForServiceType:SLServiceTypeTwitter];
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
+    if ([cell isEditing] != YES) {
+        UserModel *user = self.data[indexPath.row];
         
-        [composeController setInitialText:[NSString stringWithFormat:@"#ngprops dla %@", user.twitterUsername]];
-        
-        [self presentViewController:composeController
-                           animated:YES completion:nil];
+        if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
+        {
+            SLComposeViewController *composeController = [SLComposeViewController
+                                                          composeViewControllerForServiceType:SLServiceTypeTwitter];
+            
+            [composeController setInitialText:[NSString stringWithFormat:@"#ngprops dla %@", user.twitterUsername]];
+            
+            [self presentViewController:composeController
+                               animated:YES completion:nil];
+        }
     }
-
 }
 
 /*
@@ -160,4 +174,20 @@
 }
 */
 
+#pragma mark - Editing
+
+-(UITableViewCellEditingStyle) tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellEditingStyleInsert;
+}
+
+- (IBAction)switchEditMode:(id)sender {
+    [self.tableView setEditing:![self.tableView isEditing]];
+    if([self.tableView isEditing]) {
+        [self.labelSelectMultiple setTitle:@"Cancel"];
+    }
+    else {
+        [self.labelSelectMultiple setTitle:@"Select multiple"];
+    }
+    [self.tableView reloadData]; // force reload to reset selection style
+}
 @end

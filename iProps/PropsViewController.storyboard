@@ -46,10 +46,19 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Propsy" id="X1t-zG-GwP"/>
                     <connections>
+                        <outlet property="searchDisplayController" destination="RdD-1o-2yj" id="QZ6-Tg-SQ5"/>
                         <outlet property="tableView" destination="Prv-d0-sYQ" id="LmB-OH-ggX"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mb5-7U-khl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="RdD-1o-2yj">
+                    <connections>
+                        <outlet property="delegate" destination="W7m-Y5-4uE" id="u9w-3N-HKM"/>
+                        <outlet property="searchContentsController" destination="W7m-Y5-4uE" id="WU3-6E-Cp1"/>
+                        <outlet property="searchResultsDataSource" destination="W7m-Y5-4uE" id="GnV-ZO-H8h"/>
+                        <outlet property="searchResultsDelegate" destination="W7m-Y5-4uE" id="VW4-vk-59E"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1370" y="406"/>
         </scene>

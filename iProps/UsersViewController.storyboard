@@ -42,8 +42,14 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="gci-p6-oBp">
                         <barButtonItem key="leftBarButtonItem" image="glyphicons-82-refresh" id="vNH-oc-kMy"/>
+                        <barButtonItem key="rightBarButtonItem" title="Select multiple" id="6YS-Pa-umv">
+                            <connections>
+                                <action selector="switchEditMode:" destination="D7K-ZN-aCC" id="2xJ-yL-2uO"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="labelSelectMultiple" destination="6YS-Pa-umv" id="EZp-5x-1LC"/>
                         <outlet property="tableView" destination="dm0-ML-jXa" id="FP6-R3-EKJ"/>
                     </connections>
                 </tableViewController>
