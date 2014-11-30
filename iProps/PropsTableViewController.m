@@ -29,15 +29,10 @@
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    [self loadTweets];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear: animated];
     self.tableView.contentOffset = CGPointMake(0, -self.refreshControl.frame.size.height);
     
     [self.refreshControl beginRefreshing];
+    [self loadTweets];
 }
 
 - (void)loadTweets {

@@ -39,6 +39,10 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
+    self.tableView.contentOffset = CGPointMake(0, -self.refreshControl.frame.size.height);
+    
+    [self.refreshControl beginRefreshing];
+    
     [TwitterRequest loadUsersOnComplete:^(NSArray *users) {
         if ([users count] > 0) {
             self.data = users;
@@ -48,14 +52,6 @@
             });
         }
     }];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear: animated];
-    self.tableView.contentOffset = CGPointMake(0, -self.refreshControl.frame.size.height);
-    
-    [self.refreshControl beginRefreshing];
 }
 
 - (void)refreshTable {
