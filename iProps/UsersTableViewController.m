@@ -8,9 +8,11 @@
 
 #import "UsersTableViewController.h"
 #import "TwitterRequest.h"
+#import "UserModel.h"
 
 @interface UsersTableViewController ()
-
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) NSArray *data;
 @end
 
 @implementation UsersTableViewController
@@ -26,17 +28,27 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
     [TwitterRequest loadUsersOnComplete:^(NSArray *users) {
-        NSLog(@"users: %@", users);
+        if ([users count] > 0) {
+            self.data = users;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+            });
+        }
     }];
 }
 
 - (void)refreshTable {
     [TwitterRequest loadUsersOnComplete:^(NSArray *users) {
-        NSLog(@"users: %@", users);
+        if ([users count] > 0) {
+            self.data = users;
+            
+            [self.refreshControl endRefreshing];
+            [self.tableView reloadData];
+        }
     }];
-    [self.refreshControl endRefreshing];
-    [self.tableView reloadData];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,15 +59,32 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    if ([self.data count] > 0) {
+        return [self.data count];
+    } else {
+        return 1;
+    }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"propsCell" forIndexPath:indexPath];
+    NSLog(@"IndexPath: %@", indexPath);
+    if ([self.data count] > 0) {
+        UserModel *user = self.data[indexPath.row];
+        NSLog(@"Object: %@", user);
+        cell.textLabel.text = user.twitterUsername;
+    } else {
+        cell.textLabel.text = @"Loading";
+        cell.detailTextLabel.text = @"";
+    }
+    
+    return cell;
 }
 
 /*
