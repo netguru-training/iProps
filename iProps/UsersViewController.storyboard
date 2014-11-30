@@ -50,6 +50,9 @@
                             <state key="normal" title="+">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="clickButtonSendMultipleProps:" destination="D7K-ZN-aCC" eventType="touchUpInside" id="6sj-A4-VbW"/>
+                            </connections>
                         </button>
                         <barButtonItem key="rightBarButtonItem" title="Select multiple" id="6YS-Pa-umv">
                             <connections>

@@ -12,5 +12,6 @@
 - (IBAction)switchEditMode:(id)sender;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *labelSelectMultiple;
 @property (weak, nonatomic) IBOutlet UIButton *buttonGiveMultipleProps;
+- (IBAction)clickButtonSendMultipleProps:(id)sender;
 
 @end

@@ -18,10 +18,15 @@
 @property (strong, nonatomic) NSArray *data;
 @end
 
-@implementation UsersTableViewController
+
+@implementation UsersTableViewController {
+    NSMutableDictionary* selectedUsers;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    selectedUsers = [[NSMutableDictionary alloc] init];
     
     self.tableView.allowsMultipleSelectionDuringEditing = YES;
     
@@ -45,6 +50,7 @@
 }
 
 - (void)refreshTable {
+    [selectedUsers removeAllObjects];
     [TwitterRequest loadUsersOnComplete:^(NSArray *users) {
         if ([users count] > 0) {
             self.data = users;
@@ -109,10 +115,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    UserModel *user = self.data[indexPath.row];
     
-    if ([cell isEditing] != YES) {
-        UserModel *user = self.data[indexPath.row];
-        
+    if ([cell isEditing] == YES) {
+        [selectedUsers setObject:user.twitterUsername forKey:user.twitterUsername];
+    }
+    else {
         if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
         {
             SLComposeViewController *composeController = [SLComposeViewController
@@ -124,6 +132,11 @@
                                animated:YES completion:nil];
         }
     }
+}
+
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UserModel *user = self.data[indexPath.row];
+    [selectedUsers removeObjectForKey:user.twitterUsername];
 }
 
 /*
@@ -187,6 +200,7 @@
 }
 
 - (IBAction)switchEditMode:(id)sender {
+    [selectedUsers removeAllObjects];
     [self.tableView setEditing:![self.tableView isEditing]];
     if([self.tableView isEditing]) {
         [self.labelSelectMultiple setTitle:@"Cancel"];
@@ -198,4 +212,27 @@
     }
     [self.tableView reloadData]; // force reload to reset selection style
 }
+- (IBAction)clickButtonSendMultipleProps:(id)sender {
+    //NSLog(@"%@", selectedUsers);
+    
+    NSString* mentions = @"#ngprops dla ";
+    
+    for (NSString* key in selectedUsers) {
+        mentions = [mentions stringByAppendingString:@"@"];
+        mentions = [mentions stringByAppendingString:key];
+        mentions = [mentions stringByAppendingString:@" "];
+    }
+    
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
+    {
+        SLComposeViewController *composeController = [SLComposeViewController
+                                                      composeViewControllerForServiceType:SLServiceTypeTwitter];
+        
+        [composeController setInitialText:mentions];
+        
+        [self presentViewController:composeController
+                           animated:YES completion:nil];
+    }
+}
+
 @end
