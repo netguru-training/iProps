@@ -9,6 +9,7 @@
 #import "UsersTableViewController.h"
 #import "TwitterRequest.h"
 #import "UserModel.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 @import Social;
 
 @interface UsersTableViewController ()
@@ -78,11 +79,12 @@
 
     if ([self.data count] > 0) {
         UserModel *user = self.data[indexPath.row];
-        cell.detailTextLabel.text = user.twitterUsername;
-        cell.textLabel.text = @"";
+        cell.detailTextLabel.text = user.fullName;
+        cell.textLabel.text = user.twitterUsername;
+        [cell.imageView sd_setImageWithURL:user.profileImageUrl placeholderImage:[UIImage imageNamed:@"Awesome.png"]];
     } else {
-        cell.detailTextLabel.text = @"Loading...";
-        cell.textLabel.text = @"";
+        cell.textLabel.text = @"Loading...";
+        cell.detailTextLabel.text = @"";
     }
     
     return cell;
