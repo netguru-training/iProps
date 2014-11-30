@@ -4,6 +4,7 @@ platform :ios, '7.1'
 target 'iProps' do
   pod 'Mantle'
   pod 'SDWebImage'
+  pod 'Reachability'
 end
 
 target 'iPropsTests' do
