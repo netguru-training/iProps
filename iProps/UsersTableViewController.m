@@ -9,6 +9,7 @@
 #import "UsersTableViewController.h"
 #import "TwitterRequest.h"
 #import "UserModel.h"
+@import Social;
 
 @interface UsersTableViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -85,6 +86,22 @@
     }
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UserModel *user = self.data[indexPath.row];
+    
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
+    {
+        SLComposeViewController *composeController = [SLComposeViewController
+                                                      composeViewControllerForServiceType:SLServiceTypeTwitter];
+        
+        [composeController setInitialText:[NSString stringWithFormat:@"#ngprops dla %@", user.twitterUsername]];
+        
+        [self presentViewController:composeController
+                           animated:YES completion:nil];
+    }
+
 }
 
 /*
