@@ -190,6 +190,11 @@
     [selectedUsers removeObjectForKey:user.twitterUsername];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.tableView.contentOffset = CGPointMake(0, 45);
+}
+
 - (void)viewDidAppear:(BOOL)animated{
 //self.tableView.contentOffset = CGPointMake(0, self.searchBar.frame.size.height);
 }
