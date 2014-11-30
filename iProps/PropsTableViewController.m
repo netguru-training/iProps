@@ -12,12 +12,15 @@
 #import "TweetModel.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
+#import <TSMessage.h>
 
 @interface PropsTableViewController ()
 
 @end
 
-@implementation PropsTableViewController
+@implementation PropsTableViewController {
+    NSTimer* timerForTwitterConnection;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -41,14 +44,25 @@
 }
 
 - (void)loadTweets {
+    timerForTwitterConnection = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(handleDataRefreshFailure:) userInfo:nil repeats:NO];
     [TwitterRequest loadTweetsWithHandler:^(NSArray *array) {
         self.data = array;
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.refreshControl endRefreshing];
+            [timerForTwitterConnection invalidate];
             [self.tableView reloadData];
         });
     }];
+}
+
+- (void)handleDataRefreshFailure:(id)select {
+    [self.refreshControl endRefreshing];
+    [TSMessage showNotificationWithTitle:@"Connection error"
+                                subtitle:@"Twitter appears to be lazy!"
+                                    type:TSMessageNotificationTypeError];
+    [TSMessage setDelegate:self];
+    
 }
 
 - (void)refreshTable {
