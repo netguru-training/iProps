@@ -117,6 +117,9 @@
         cell.imageView.layer.masksToBounds = YES;
         cell.imageView.layer.borderColor=[[UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1.0] CGColor];
         [cell.imageView sd_setImageWithURL:user.profileImageUrl placeholderImage:[UIImage imageNamed:@"Awesome.png"]];
+    } else {
+        cell.detailTextLabel.text = @"Loading...";
+        cell.textLabel.text = @"";
     }
     
     if (self.tableView.isEditing) {
