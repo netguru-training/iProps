@@ -11,6 +11,7 @@
 #import "UserModel.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
+#import <TSMessage.h>
 @import Social;
 
 @interface UsersTableViewController ()
@@ -22,6 +23,7 @@
 
 @implementation UsersTableViewController {
     NSMutableDictionary* selectedUsers;
+    NSTimer* timerForTwitterConnection;
 }
 
 - (void)viewDidLoad {
@@ -56,6 +58,7 @@
 }
 
 - (void)refreshTable {
+        timerForTwitterConnection = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(handleDataRefreshFailure:) userInfo:nil repeats:NO];
     [selectedUsers removeAllObjects];
     [TwitterRequest loadUsersOnComplete:^(NSArray *users) {
         if ([users count] > 0) {
@@ -63,9 +66,19 @@
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.refreshControl endRefreshing];
+            [timerForTwitterConnection invalidate];
             [self.tableView reloadData];
         });
     }];
+    
+}
+
+- (void)handleDataRefreshFailure:(id)select {
+    [self.refreshControl endRefreshing];
+    [TSMessage showNotificationWithTitle:@"Connection error"
+                                subtitle:@"Twitter appears to be lazy!"
+                                    type:TSMessageNotificationTypeError];
+    [TSMessage setDelegate:self];
     
 }
 
