@@ -41,6 +41,14 @@
       }];
 }
 
+NSInteger alphabeticUsersSort(id user1, id user2, void *context)
+{
+    NSString *a = ((UserModel*)user1).twitterUsername;
+    NSString *b = ((UserModel*)user2).twitterUsername;
+    
+    return [a localizedCaseInsensitiveCompare:b];
+}
+
 + (void)loadUsersOnComplete:(onSuccessBlock)onSuccess
 {
     NSURL *url = [[NSURL alloc] initWithString:@"https://api.twitter.com/1.1/friends/list.json"];
@@ -55,7 +63,7 @@
             [users addObject:[MTLJSONAdapter modelOfClass:UserModel.class fromJSONDictionary:userData error:&error]];
         }
         
-        onSuccess(users);
+        onSuccess([users sortedArrayUsingFunction:alphabeticUsersSort context:nil]);
     }];
 }
 
