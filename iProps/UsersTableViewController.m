@@ -43,10 +43,19 @@
         if ([users count] > 0) {
             self.data = users;
             dispatch_async(dispatch_get_main_queue(), ^{
+                [self.refreshControl endRefreshing];
                 [self.tableView reloadData];
             });
         }
     }];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear: animated];
+    self.tableView.contentOffset = CGPointMake(0, -self.refreshControl.frame.size.height);
+    
+    [self.refreshControl beginRefreshing];
 }
 
 - (void)refreshTable {
@@ -54,10 +63,11 @@
     [TwitterRequest loadUsersOnComplete:^(NSArray *users) {
         if ([users count] > 0) {
             self.data = users;
-            
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
             [self.refreshControl endRefreshing];
             [self.tableView reloadData];
-        }
+        });
     }];
     
 }
@@ -76,11 +86,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    if ([self.data count] > 0) {
-        return [self.data count];
-    } else {
-        return 1;
-    }
+    return [self.data count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -96,9 +102,6 @@
         cell.imageView.layer.masksToBounds = YES;
         cell.imageView.layer.borderColor=[[UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1.0] CGColor];
         [cell.imageView sd_setImageWithURL:user.profileImageUrl placeholderImage:[UIImage imageNamed:@"Awesome.png"]];
-    } else {
-        cell.textLabel.text = @"Loading...";
-        cell.detailTextLabel.text = @"";
     }
     
     if (self.tableView.isEditing) {

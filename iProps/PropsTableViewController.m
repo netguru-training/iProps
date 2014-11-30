@@ -32,6 +32,14 @@
     [self loadTweets];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear: animated];
+    self.tableView.contentOffset = CGPointMake(0, -self.refreshControl.frame.size.height);
+    
+    [self.refreshControl beginRefreshing];
+}
+
 - (void)loadTweets {
     [TwitterRequest loadTweetsWithHandler:^(NSArray *array) {
         self.data = array;
@@ -62,11 +70,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    if ([self.data count] > 0) {
-        return [self.data count];
-    } else {
-        return 1;
-    }
+    return [self.data count];
 }
 
 
@@ -83,11 +87,7 @@
         cell.imageView.layer.masksToBounds = YES;
         cell.imageView.layer.borderColor=[[UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1.0] CGColor];
         [cell.imageView sd_setImageWithURL:tweet.user.profileImageUrl placeholderImage:[UIImage imageNamed:@"Awesome.png"]];
-    } else {
-        cell.textLabel.text = @"Loading";
-        cell.detailTextLabel.text = @"";
     }
-    
     return cell;
 }
 
@@ -99,10 +99,6 @@
         PropsDetailsViewController* propsDetailsViewController = [segue destinationViewController];
         propsDetailsViewController.props = [self.data objectAtIndex:[self.tableView indexPathForSelectedRow].row];
     }
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"czesc %ld", indexPath.row);
 }
 
 /*
