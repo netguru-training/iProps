@@ -14,8 +14,9 @@
 @import Social;
 
 @interface UsersTableViewController ()
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSArray *data;
+    @property (weak, nonatomic) IBOutlet UITableView *tableView;
+    @property (strong, nonatomic) NSArray *data;
+    @property (strong, nonatomic) NSArray *searchResults;
 @end
 
 
@@ -39,6 +40,10 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
+    self.tableView.contentOffset = CGPointMake(0, -self.refreshControl.frame.size.height);
+    
+    [self.refreshControl beginRefreshing];
+    
     [TwitterRequest loadUsersOnComplete:^(NSArray *users) {
         if ([users count] > 0) {
             self.data = users;
@@ -48,14 +53,6 @@
             });
         }
     }];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear: animated];
-    self.tableView.contentOffset = CGPointMake(0, -self.refreshControl.frame.size.height);
-    
-    [self.refreshControl beginRefreshing];
 }
 
 - (void)refreshTable {
@@ -86,14 +83,32 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return [self.data count];
+
+    if ([self.data count] > 0) {
+        if (tableView == self.searchDisplayController.searchResultsTableView) {
+            return [self.searchResults count];
+        } else {
+            return [self.data count];
+        }
+        return [self.data count];
+    } else {
+        return 1;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userCell" forIndexPath:indexPath];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"userCell" forIndexPath:indexPath];
 
     if ([self.data count] > 0) {
-        UserModel *user = self.data[indexPath.row];
+
+        UserModel *user;
+        
+        if (tableView == self.searchDisplayController.searchResultsTableView) {
+            user = self.searchResults[indexPath.row];
+        } else {
+            user = self.data[indexPath.row];
+        }
+
         cell.detailTextLabel.text = user.fullName;
         cell.textLabel.text = user.twitterUsername;
         cell.imageView.layer.backgroundColor=[[UIColor clearColor] CGColor];
@@ -102,10 +117,30 @@
         cell.imageView.layer.masksToBounds = YES;
         cell.imageView.layer.borderColor=[[UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1.0] CGColor];
         [cell.imageView sd_setImageWithURL:user.profileImageUrl placeholderImage:[UIImage imageNamed:@"Awesome.png"]];
+    } else {
+        cell.detailTextLabel.text = @"Loading...";
+        cell.textLabel.text = @"";
     }
     
     if (self.tableView.isEditing) {
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+        UserModel *user;
+        
+        if (tableView == self.searchDisplayController.searchResultsTableView) {
+            user = self.searchResults[indexPath.row];
+        } else {
+            user = self.data[indexPath.row];
+        }
+
+        cell.detailTextLabel.text = user.fullName;
+        cell.textLabel.text = user.twitterUsername;
+        cell.imageView.layer.backgroundColor=[[UIColor clearColor] CGColor];
+        cell.imageView.layer.cornerRadius=20;
+        cell.imageView.layer.borderWidth=1.5;
+        cell.imageView.layer.masksToBounds = YES;
+        cell.imageView.layer.borderColor=[[UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1.0] CGColor];
+        [cell.imageView sd_setImageWithURL:user.profileImageUrl placeholderImage:[UIImage imageNamed:@"Awesome.png"]];
+
     } else {
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
@@ -115,15 +150,25 @@
     return cell;
 }
 
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    self.searchResults = [self.data filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"twitterUsername contains[cd] %@", searchString]];
+    return YES;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    UserModel *user = self.data[indexPath.row];
+    UserModel *user;
+    
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        user = self.searchResults[indexPath.row];
+    } else {
+        user = self.data[indexPath.row];
+    }
     
     if ([cell isEditing] == YES) {
         [selectedUsers setObject:user.twitterUsername forKey:user.twitterUsername];
-    }
-    else {
+    } else {
         if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
         {
             SLComposeViewController *composeController = [SLComposeViewController
@@ -138,8 +183,23 @@
 }
 
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UserModel *user = self.data[indexPath.row];
+    UserModel *user;
+    
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        user = self.searchResults[indexPath.row];
+    } else {
+        user = self.data[indexPath.row];
+    }
     [selectedUsers removeObjectForKey:user.twitterUsername];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.tableView.contentOffset = CGPointMake(0, 45);
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+//self.tableView.contentOffset = CGPointMake(0, self.searchBar.frame.size.height);
 }
 
 /*

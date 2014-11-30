@@ -5,6 +5,7 @@ target 'iProps' do
   pod 'Mantle'
   pod 'SDWebImage'
   pod 'TSMessages'
+  pod 'Reachability'
 end
 
 target 'iPropsTests' do

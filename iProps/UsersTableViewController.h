@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UsersTableViewController : UITableViewController
+@interface UsersTableViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate>
 - (IBAction)switchEditMode:(id)sender;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *labelSelectMultiple;
 @property (weak, nonatomic) IBOutlet UIButton *buttonGiveMultipleProps;
 - (IBAction)clickButtonSendMultipleProps:(id)sender;
+
 
 @end
