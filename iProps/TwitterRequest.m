@@ -35,7 +35,6 @@
                   
                   [postRequest performRequestWithHandler:requestHandler];
               }
-              
           } else {
               NSLog(@"No access");
           }
@@ -56,7 +55,7 @@
             [users addObject:[MTLJSONAdapter modelOfClass:UserModel.class fromJSONDictionary:userData error:&error]];
         }
         
-        onSuccess([users copy]);
+        onSuccess(users);
     }];
 }
 
