@@ -7,9 +7,14 @@
 //
 
 #import "PropsTableViewController.h"
+#import "PropsDetailsViewController.h"
 #import "TwitterRequest.h"
 #import "TweetModel.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+
+@interface PropsTableViewController ()
+
+@end
 
 @implementation PropsTableViewController
 
@@ -79,6 +84,16 @@
     }
     
     return cell;
+}
+
+#pragma mark - segue handling
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"showPropsDetail"]) {
+        PropsDetailsViewController* propsDetailsViewController = [segue destinationViewController];
+        propsDetailsViewController.props = [self.data objectAtIndex:[self.tableView indexPathForSelectedRow].row];
+    }
 }
 
 /*
