@@ -17,6 +17,7 @@
 		90089B571A29D2D400148B04 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90089B561A29D2D400148B04 /* Twitter.framework */; };
 		90089B591A29DD7E00148B04 /* PropsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90089B581A29DD7E00148B04 /* PropsViewController.storyboard */; };
 		90089B5C1A29DDB400148B04 /* RootTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90089B5B1A29DDB400148B04 /* RootTabViewController.m */; };
+		90A8E5BE1A2B561700EE016F /* ReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A8E5BD1A2B561700EE016F /* ReachabilityManager.m */; };
 		A42C9E891A29E70D00F3F8B5 /* UsersViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A42C9E881A29E70D00F3F8B5 /* UsersViewController.storyboard */; };
 		A43E739B1A2B0EC60019A6DF /* PropsDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A43E739A1A2B0EC60019A6DF /* PropsDetailsViewController.m */; };
 		A48BF63D1A29F39300D972C3 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A48BF63C1A29F39300D972C3 /* UserModel.m */; };
@@ -58,6 +59,8 @@
 		90089B581A29DD7E00148B04 /* PropsViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PropsViewController.storyboard; sourceTree = "<group>"; };
 		90089B5A1A29DDB400148B04 /* RootTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootTabViewController.h; sourceTree = "<group>"; };
 		90089B5B1A29DDB400148B04 /* RootTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootTabViewController.m; sourceTree = "<group>"; };
+		90A8E5BC1A2B561700EE016F /* ReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReachabilityManager.h; sourceTree = "<group>"; };
+		90A8E5BD1A2B561700EE016F /* ReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReachabilityManager.m; sourceTree = "<group>"; };
 		9A195377468B20AF4E3D8DFC /* Pods-iProps.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iProps.release.xcconfig"; path = "Pods/Target Support Files/Pods-iProps/Pods-iProps.release.xcconfig"; sourceTree = "<group>"; };
 		A42C9E881A29E70D00F3F8B5 /* UsersViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UsersViewController.storyboard; sourceTree = "<group>"; };
 		A43E73991A2B0EC60019A6DF /* PropsDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropsDetailsViewController.h; sourceTree = "<group>"; };
@@ -139,6 +142,8 @@
 				90089B331A29CCAE00148B04 /* AppDelegate.m */,
 				90089B3B1A29CCAE00148B04 /* Images.xcassets */,
 				90089B2E1A29CCAE00148B04 /* Supporting Files */,
+				90A8E5BC1A2B561700EE016F /* ReachabilityManager.h */,
+				90A8E5BD1A2B561700EE016F /* ReachabilityManager.m */,
 			);
 			path = iProps;
 			sourceTree = "<group>";
@@ -363,6 +368,7 @@
 				A48BF6421A29FECA00D972C3 /* UsersTableViewController.m in Sources */,
 				A48BF63D1A29F39300D972C3 /* UserModel.m in Sources */,
 				90089B341A29CCAE00148B04 /* AppDelegate.m in Sources */,
+				90A8E5BE1A2B561700EE016F /* ReachabilityManager.m in Sources */,
 				90089B311A29CCAE00148B04 /* main.m in Sources */,
 				CE1B97B21A29E905005EC2D0 /* PropsTableViewController.m in Sources */,
 				A43E739B1A2B0EC60019A6DF /* PropsDetailsViewController.m in Sources */,

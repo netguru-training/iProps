@@ -12,6 +12,8 @@
 #import "TweetModel.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
+#import "ReachabilityManager.h"
+#import <Reachability.h>
 #import <TSMessage.h>
 
 @interface PropsTableViewController ()
@@ -25,7 +27,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.refreshControl = [[UIRefreshControl alloc]init];
+    
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
     [self.tableView addSubview:self.refreshControl];
     [self.refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
     // Uncomment the following line to preserve selection between presentations.
@@ -33,9 +37,28 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     self.tableView.contentOffset = CGPointMake(0, -self.refreshControl.frame.size.height);
+    //NSLog(@"Internet: %d", [ReachabilityManager isReachable]);
     
-    [self.refreshControl beginRefreshing];
-    [self loadTweets];
+    if ([ReachabilityManager isReachable]) {
+        [self loadTweets];
+    }
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [ReachabilityManager sharedManager];
+    [ReachabilityManager sharedManager].reachability.unreachableBlock = ^(Reachability *reachability){
+        if (!reachability.isReachable) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [TSMessage showNotificationWithTitle:@"Connection error"
+                                            subtitle:@"Your connection appears to be offline"
+                                                type:TSMessageNotificationTypeError];
+                
+            });
+        }
+    };
 }
 
 - (void)loadTweets {
@@ -56,7 +79,6 @@
     [TSMessage showNotificationWithTitle:@"Connection error"
                                 subtitle:@"Twitter appears to be lazy!"
                                     type:TSMessageNotificationTypeError];
-    [TSMessage setDelegate:self];
     
 }
 

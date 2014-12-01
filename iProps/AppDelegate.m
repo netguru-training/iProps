@@ -8,15 +8,20 @@
 
 #import "AppDelegate.h"
 
-@interface AppDelegate ()
+#import "ReachabilityManager.h"
+#import "Reachability.h"
+#import "RootTabViewController.h"
+#import <TSMessage.h>
 
+@interface AppDelegate ()
+@property (strong, nonatomic) UIViewController* rootTabViewController;
 @end
 
 @implementation AppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    // Initialize Reachability
     return YES;
 }
 
